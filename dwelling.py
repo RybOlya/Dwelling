@@ -1,4 +1,3 @@
-import datetime
 from typing import Union
 from typing import List
 class InfrastructureProximity:
@@ -76,6 +75,8 @@ class TownHouse(ManorType):
                          private_plot_area_in_acres, floors)
         self.houses_quantity = houses_quantity
 if __name__ == '__main__':
+    apartment_on_stusa = Studio("ЖБ на Стуса", "вул. Стуса, 39", 100, 30000, 31, 2, True, "індивідуальне", "зданий в експлуатацію", True, 800, 200, 200, 500, 500, 100, "бізнес", 9, True, True)
+    apartment_on_yaroslavenka = PentHouse("Вілла Швейцарія", "вул. Ярославенка, 21",90,30000,15,2,True, "індивідуальне", "зданий в експлуатацію",True, 200, 100, 50, 50, 800, 100, "комфорт", 5, True, True, True)
+    cottage_matrix = DetachedHouse("КМ TIMBERLAND", "вул. Лисеницька, 66", 190,28000, 0,3,True, "газовий котел", "з чорновим ремонтом",True, 300, 200, 300, 500, 400, 800, 1.5, 2,False)
     townhouse_privesin = TownHouse("Провесінь","вул. Тракт Глинянський, 152",181,31000,33,3,True,"газовий котел", "без ремонту",False, 300, 300, 210, 300, 500, 700, 8,1,29)
 
-    #apartment_on_yaroslavenka = Studio("Swiss Villa", "23 Yaroslavenka St.",50,30000,15,2,True, "individual", "turnkey",True,)
