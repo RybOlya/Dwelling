@@ -85,42 +85,37 @@ class RealEstateAgency(DwellingInfo):
         for dwellings_available in RealEstateAgency.all_dwellings: 
             print(dwellings_available.name," в каталозі")
     
-    def sort_price(dwellings)->int:
-        return dwellings.price_per_square_meter
-
-    def get_dwellings_sorted_by_price()->List[Union[str,bool,float]]:
-        ch = input("Sort by price:\n 1.low-high\n 2.high-low\n Choose 1 or 2:  ")
+    def get_dwellings_sorted_by_price()->List[Union[str,float]]:
+        ch = input("Сортування за ціною:\n 1.За зростанням\n 2.За спаданням\n Виберіть 1 або 2:  ")
         if ch is "1":
-            sorted_dwelling = sorted(RealEstateAgency.all_dwellings, key = RealEstateAgency.sort_price)  
+            sorted_dwelling = sorted(RealEstateAgency.all_dwellings, key = lambda d: d.price_per_square_meter)  
         elif ch is "2":
-            sorted_dwelling = sorted(RealEstateAgency.all_dwellings, key = RealEstateAgency.sort_price, reverse=True)  
+            sorted_dwelling = sorted(RealEstateAgency.all_dwellings, key = lambda d: d.price_per_square_meter, reverse=True)  
 
         for dwelling in sorted_dwelling:
             print(dwelling.name, dwelling.price_per_square_meter)
         return (list[dwelling.name, dwelling.price_per_square_meter])
     
-    def sort_location(dwellings)->str:
-        return dwellings.location
         
-    def get_dwellings_sorted_by_location()->List[Union[str,bool,float]]:
-        ch = input("Sort alphabetically:\n Choose (yes/no):")
+    def get_dwellings_sorted_by_location()->List[Union[str,float]]:
+        ch = input("Локації за алфавітом:\n Виберіть (yes/no):")
         if ch == "yes":
-            sorted_dwelling = sorted(RealEstateAgency.all_dwellings, key = RealEstateAgency.sort_location)  
+            sorted_dwelling = sorted(RealEstateAgency.all_dwellings, key = lambda d: d.location)  
         elif ch == "no":
-            sorted_dwelling = sorted(RealEstateAgency.all_dwellings, key = RealEstateAgency.sort_location, reverse=True)  
+            sorted_dwelling = sorted(RealEstateAgency.all_dwellings, key = lambda d: d.location, reverse=True)  
 
         for dwelling in sorted_dwelling:
-            print(dwelling.name, dwelling.price_per_square_meter)
+            print(dwelling.name," на ", dwelling.location)
         return (list[dwelling.name, dwelling.price_per_square_meter])
 if __name__ == '__main__':
-    apartment_on_stusa = Studio("A ЖБ на Стуса", "вул. Стуса, 39", 100, 30000, 31, 2, True, "індивідуальне", "зданий в експлуатацію", True, 800, 200, 200, 500, 500, 100, "бізнес", 9, True, True)
-    apartment_on_yaroslavenka = PentHouse("C Вілла Швейцарія", "вул. Ярославенка, 21",90,30000,15,2,True, "індивідуальне", "зданий в експлуатацію",True, 200, 100, 50, 50, 800, 100, "комфорт", 5, True, True, True)
-    cottage_timberland = DetachedHouse("D КМ TIMBERLAND", "вул. Лисеницька, 66", 190,28000, 0,3,True, "газовий котел", "з чорновим ремонтом",True, 300, 200, 300, 500, 400, 800, 1.5, 2,False)
-    townhouse_privesin = TownHouse("B Провесінь","вул. Тракт Глинянський, 152",181,31000,33,3,True,"газовий котел", "без ремонту",False, 300, 300, 210, 300, 500, 700, 8,1,29) 
+    apartment_on_stusa = Studio("ЖБ на Стуса", "вул. Стуса, 39", 100, 30000, 31, 2, True, "індивідуальне", "зданий в експлуатацію", True, 800, 200, 200, 500, 500, 100, "бізнес", 9, True, True)
+    apartment_on_yaroslavenka = PentHouse("Вілла Швейцарія", "вул. Ярославенка, 21",90,30000,15,2,True, "індивідуальне", "зданий в експлуатацію",True, 200, 100, 50, 50, 800, 100, "комфорт", 5, True, True, True)
+    cottage_timberland = DetachedHouse("КМ TIMBERLAND", "вул. Лисеницька, 66", 190,28000, 0,3,True, "газовий котел", "з чорновим ремонтом",True, 300, 200, 300, 500, 400, 800, 1.5, 2,False)
+    townhouse_privesin = TownHouse("Провесінь","вул. Тракт Глинянський, 152",181,31000,33,3,True,"газовий котел", "без ремонту",False, 300, 300, 210, 300, 500, 700, 8,1,29) 
     RealEstateAgency.add_dwelling(apartment_on_stusa)
     RealEstateAgency.add_dwelling(apartment_on_yaroslavenka)
     RealEstateAgency.add_dwelling(cottage_timberland)
     RealEstateAgency.add_dwelling(townhouse_privesin)
     RealEstateAgency.show_available_dwellings()
-    #RealEstateAgency.get_dwellings_sorted_by_price()
+    RealEstateAgency.get_dwellings_sorted_by_price()
     RealEstateAgency.get_dwellings_sorted_by_location()
