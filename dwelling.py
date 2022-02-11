@@ -107,6 +107,15 @@ class RealEstateAgency(DwellingInfo):
         for dwelling in sorted_dwelling:
             print(dwelling.name," на ", dwelling.location)
         return (list[dwelling.name, dwelling.price_per_square_meter])
+    def sell_dwelling(want_name) -> Union[str,float,float]:
+        want_dwelling = [d for d in RealEstateAgency.all_dwellings if d.name is want_name]
+        total_price = 0
+        for dwelling in want_dwelling:
+            total_price = dwelling.price_per_square_meter
+            RealEstateAgency.all_dwellings.remove(dwelling)
+        if total_price == 0:
+            print("No ", want_name," in stock")
+        return [dwelling.name, dwelling.price_per_square_meter]
 if __name__ == '__main__':
     apartment_on_stusa = Studio("ЖБ на Стуса", "вул. Стуса, 39", 100, 30000, 31, 2, True, "індивідуальне", "зданий в експлуатацію", True, 800, 200, 200, 500, 500, 100, "бізнес", 9, True, True)
     apartment_on_yaroslavenka = PentHouse("Вілла Швейцарія", "вул. Ярославенка, 21",90,30000,15,2,True, "індивідуальне", "зданий в експлуатацію",True, 200, 100, 50, 50, 800, 100, "комфорт", 5, True, True, True)
@@ -119,3 +128,5 @@ if __name__ == '__main__':
     RealEstateAgency.show_available_dwellings()
     RealEstateAgency.get_dwellings_sorted_by_price()
     RealEstateAgency.get_dwellings_sorted_by_location()
+    print(RealEstateAgency.sell_dwelling("КМ TIMBERLAND"))
+
